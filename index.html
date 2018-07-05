@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Bootstrap Theme</title>
 </head>
-<body>
+<body data-spy="scroll" data-target="#main-nav" id="home">
     <!-- ------------------------------------- Fixed Nav Bar ------------------------------------- -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
         <div class="container">
             <a href="index.html" class="navbar-brand">LoopLAB</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#home-head-section" class="nav-link">Home</a>
+                        <a href="#home-section" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="#explore-head-section" class="nav-link">Explore</a>
@@ -185,7 +185,7 @@
         </div>
     </section>
 
-        <!--  ---------------------------------------------- Share Section ----------------------------------------------  -->
+    <!--  ---------------------------------------------- Share Section ----------------------------------------------  -->
     <!--  ----------------------------- Share Head -----------------------------  -->
     <section id="share-head-section" class="bg-primary">
         <div class="container">
@@ -229,12 +229,80 @@
         </div>
     </section>
 
+    <!--  ---------------------------------------------- Footer ----------------------------------------------  -->
+    <footer id="main-footer" class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center py-4">
+                    <h3>LoopLAB</h3>
+                    <p>Copyright &copy; <span id="year"></span></p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#contactModal">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+            <!--  ----------------------------- Modal (Contact form) -----------------------------  -->
+    <div class="modal fade text-dark" id="contactModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Us</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script>
         // Actualizacion automatica del año para el copyright (utilizar un span con el id="year")
         $('#year').text(new Date().getFullYear());
+
+        //Inicializo ScrollSpy
+        $('body').scrollspy({target: '#main-nav'});
+
+        //Smooth Scrolling
+        $('#main-nav a').on('click', function(e){
+        //Chequear el valor del #
+        if(this.hash !== '') {
+            //Prevenir el comportamiento por default
+            e.preventDefault();
+
+            //Almacenar el valor del id
+            const hash = this.hash;
+
+            //Efecto Smooth Scroll
+            $('html, body').animate({
+            scrollTop: $(hash).offset().top
+            }, 800, function() {
+            window.location.hash = hash;
+        });
+        }
+    });
     </script>
 </body>
 </html>
