@@ -2,11 +2,13 @@ body {
     background: #333;
     color: #fff;
 }
+
 /* ------------------------ Navigation bar ------------------------ */
 .navbar {
     border-bottom: #008ed6 3px solid;
     opacity: 0.8;
 }
+
 /* ----------------------------------------- Section 1 HOME ------------------------ */
 #home-section {
     background: url(../img/home.jpg);
@@ -33,9 +35,21 @@ body {
     opacity: 0.8;
 }
 
-#home-section .fas { /* Estilos para los checkmarks */
+#home-section .fas,
+#create-section .fas { /* Estilos para los checkmarks */
     color: #008ed6;
     background: #fff;
     padding: 5px;
     border-radius: 5px;
 }
+
+/* ----------------------------------------- Section 2 EXPLORE ------------------------ */
+#explore-section .fas,
+ #share-section .fas {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* ----------------------------------------- Section 3 CREATE ------------------------ */
